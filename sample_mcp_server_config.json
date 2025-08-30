@@ -1,0 +1,83 @@
+{
+  "mcpServers": {
+    "server-name": {
+      "command": "executable-path",
+      "args": ["arg1", "arg2", "..."],
+      "env": {
+        "ENV_VAR_NAME": "value",
+        "ANOTHER_VAR": "another_value"
+      },
+      "cwd": "/path/to/working/directory",
+      "disabled": false,
+      "alwaysAllow": ["resource://", "file://"],
+      "settings": {
+        "custom_setting": "value",
+        "api_key": "your-api-key"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/directory"],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "database": {
+      "command": "uvx",
+      "args": ["mcp-server-sqlite", "--db-path", "/path/to/database.db"],
+      "disabled": false
+    },
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git", "--repository", "/path/to/repo"],
+      "cwd": "/path/to/repo"
+    },
+    "web-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "your-brave-api-key"
+      }
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "settings": {
+        "max_entries": 1000
+      }
+    },
+    "custom-dotnet": {
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "C:/path/to/your/project.csproj",
+        "--configuration",
+        "Release"
+      ],
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "LOG_LEVEL": "Information"
+      },
+      "cwd": "C:/path/to/your",
+      "alwaysAllow": ["file://C:/allowed/path/"]
+    },
+    "python-server": {
+      "command": "python",
+      "args": ["-m", "your_mcp_server"],
+      "env": {
+        "PYTHONPATH": "/path/to/your/modules",
+        "API_KEY": "your-api-key"
+      },
+      "cwd": "/path/to/python/project"
+    }
+  },
+  "globalSettings": {
+    "logging": {
+      "level": "info",
+      "file": "/path/to/logfile.log"
+    },
+    "timeout": 30000,
+    "maxConcurrentServers": 10
+  }
+}
